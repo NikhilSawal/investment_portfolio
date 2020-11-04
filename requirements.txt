@@ -2,6 +2,7 @@ aiohttp==3.7.2
 async-timeout==3.0.1
 attrs==20.2.0
 Automat==20.2.0
+certifi==2020.6.20
 cffi==1.14.3
 chardet==3.0.4
 constantly==15.1.0
@@ -25,11 +26,13 @@ PyDispatcher==2.0.5
 PyHamcrest==2.0.2
 pyOpenSSL==19.1.0
 queuelib==1.5.0
+requests==2.24.0
 Scrapy==2.4.0
 service-identity==18.1.0
 six==1.15.0
 Twisted==20.3.0
 typing-extensions==3.7.4.3
+urllib3==1.25.11
 w3lib==1.22.0
 yarl==1.6.2
 zope.interface==5.1.2
