@@ -1,5 +1,9 @@
 import scrapy
 import datetime
+import helper_functions as hf
+
+
+hf.slack_msg("Start scrape")
 
 class IndexSpider(scrapy.Spider):
     name = "index"
@@ -21,3 +25,5 @@ class IndexSpider(scrapy.Spider):
             'nasdaq_delta'      : index[7],
             'nasdaq_delta(%)'   : index[8],
         }
+
+hf.slack_msg("End scrape")
