@@ -9,5 +9,4 @@ def slack_msg(msg):
     }
 
     webhook = os.environ.get("SLACK_API_KEY")
-    print(webhook)
     requests.post(webhook, json.dumps(data))
