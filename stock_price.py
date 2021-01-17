@@ -24,10 +24,12 @@ class IndexSpider(scrapy.Spider):
         index = response.css('div.D\(ib\) span.Trsdu\(0\.3s\)::text').getall()
         name = response.css('div.D\(ib\) h1.D\(ib\)::text').getall()
         yield {
-            'datetime'  : datetime.datetime.now().strftime("%Y-%m-%d %X"),
-            'name'      : name[0],
-            'price'     : index[9],
-            'delta'     : index[10],
+            'datetime'   : datetime.datetime.now().strftime("%Y-%m-%d %X"),
+            'name'       : name[0],
+            'price'      : index[9],
+            'delta'      : index[10],
+            'top_3_news' : response.css('a.Fz\(18px\)::text')[-3:].getall(),
+            'news_source': response.css('div.Fz\(11px\)::text')[-3:].getall(),
         }
 
 hf.slack_msg("End stock price scrape")
