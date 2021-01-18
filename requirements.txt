@@ -14,11 +14,13 @@ incremental==17.5.0
 itemadapter==0.1.1
 itemloaders==1.0.3
 jmespath==0.10.0
+json-lines==0.5.0
 lxml==4.6.1
 multidict==5.0.0
 numpy==1.19.3
 parsel==1.6.0
 Protego==0.1.16
+psycopg2==2.8.6
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
