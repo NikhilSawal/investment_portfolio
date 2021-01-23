@@ -3,10 +3,12 @@ import datetime
 import helper_functions as hf
 import re
 
-
+# Calls hf (helper function) to send notifications to slack
 hf.slack_msg("Start scrape")
 
 class IndexSpider(scrapy.Spider):
+
+    # name of the spider, which will be referred in cronjob
     name = "index"
     start_urls = [
         "https://finance.yahoo.com"
@@ -14,7 +16,16 @@ class IndexSpider(scrapy.Spider):
 
     def parse(self, response):
 
+        """This method is called to handle the response downloaded for each request made.
+        The response parameter is an instance that holds the page css content from which
+        we will be extracting helpful information like s&p, dow 30 and nasdaq index."""
+
+        # The object index holds the css content for the scrape
         index = response.css("span.Trsdu\(0\.3s\)::text").getall()
+
+        # following objects are regex pattern that extract numeric content from different
+        # index droping the following symbols '% | ()'. These are to make ETL operations
+        # easier.
         delta_pattern = re.compile(r'(.?\d+\.\d+)')
         delta_perc_pattern = re.compile(r'(.?\d+\.\d+).+')
 

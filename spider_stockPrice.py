@@ -3,9 +3,12 @@ import datetime
 import helper_functions as hf
 import re
 
+# Calls hf (helper function) to send notifications to slack
 hf.slack_msg("Start stock price scrape")
 
 class IndexSpider(scrapy.Spider):
+
+    # name of the spider
     name = "stock_price"
     start_urls = ['https://finance.yahoo.com/quote/TWLO?p=TWLO',
                   'https://finance.yahoo.com/quote/UAL?p=UAL',
@@ -22,8 +25,16 @@ class IndexSpider(scrapy.Spider):
 
     def parse(self, response):
 
+        """This method is called to handle the response downloaded for each request made.
+        The response parameter is an instance that holds the page css content from which
+        we will be extracting helpful information like stock price, change in price(delta &
+        delta %) and top 3 news headlines related to that company."""
+
+        # These objects index & name hold the css content for the scrape
         index = response.css('div.D\(ib\) span.Trsdu\(0\.3s\)::text').getall()
         name = response.css('div.D\(ib\) h1.D\(ib\)::text').getall()
+
+        # This object holds the regex pattern to perform ETL on scraped data
         delta_pattern = re.compile(r'(.?\d+\.\d+)(\s).?(.?\d+\.\d+).+')
 
         yield {
