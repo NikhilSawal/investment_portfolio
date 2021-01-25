@@ -37,7 +37,7 @@ class IndexSpider(scrapy.Spider):
             'name'           : name[0],
             'sector(s)'      : info[0],
             'industry'       : info[1],
-            'employee_count' : response.css('span.Fw\(600\) span::text').get(),
+            'employee_count' : response.css('span.Fw\(600\) span::text').get().replace(",",""),
         }
 
 hf.slack_msg("Get company info DONE!!")
