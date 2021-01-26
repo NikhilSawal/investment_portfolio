@@ -38,12 +38,13 @@ class IndexSpider(scrapy.Spider):
         delta_pattern = re.compile(r'(.?\d+\.\d+)(\s).?(.?\d+\.\d+).+')
 
         yield {
-            'datetime'   : datetime.datetime.now().strftime("%Y-%m-%d %X"),
-            'name'       : name[0],
-            'price'      : index[9].replace(",",""),
-            'delta'      : delta_pattern.sub(r'\1\2\3',index[10]).split(" "),
-            'top_3_news' : response.css('a.Fz\(18px\)::text')[-3:].getall(),
-            'news_source': response.css('div.Fz\(11px\)::text')[-3:].getall(),
+            'datetime'              : datetime.datetime.now().strftime("%Y-%m-%d %X"),
+            'name'                  : name[0],
+            'price'                 : index[9].replace(",",""),
+            'delta_price'           : delta_pattern.sub(r'\1\2\3',index[10]).split(" ")[0],
+            'delta_price_perc'      : delta_pattern.sub(r'\1\2\3',index[10]).split(" ")[1],
+            'top_3_news'            : response.css('a.Fz\(18px\)::text')[-3:].getall(),
+            'news_source'           : response.css('div.Fz\(11px\)::text')[-3:].getall(),
         }
 
 hf.slack_msg("End stock price scrape")
