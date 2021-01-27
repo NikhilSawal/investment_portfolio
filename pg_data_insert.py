@@ -8,6 +8,14 @@ import sys
 
 def pipe_data(file_name):
 
+    """
+    This piece of code perform the following opertions:
+    1. Connect to database (investment_db)
+    2. Custom builds the SQL script to pipe data into a specific table
+    3. Iteratively pipes new data into the table
+    4. Sends notification to slack about job completion or possible error messages
+    """
+
     start = datetime.now()
 
     # Global variables
@@ -15,13 +23,14 @@ def pipe_data(file_name):
     file_name = file_name
     pg_auth = os.environ.get("PG_AUTH")
 
-    # Database credentials
+    # Setup database credentials
     conn = psycopg2.connect(host="localhost",
                             user="postgres",
                             dbname="investment_db",
                             password=pg_auth)
     cur = conn.cursor()
 
+    # Create custom SQL
     if file_name == "index.jl":
         sql = """INSERT INTO market_index
              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;"""
@@ -35,6 +44,7 @@ def pipe_data(file_name):
         hf.slack_msg("```XXXXX {} not found in directory!!!! Check for possible renames!!```".format(file_name))
         sys.exit()
 
+    # Pipe data to Postgres
     with open(file_path+file_name) as inpFile:
 
         for i, j in enumerate(inpFile):
@@ -45,10 +55,11 @@ def pipe_data(file_name):
                 cur.execute(sql, values)
                 conn.commit()
             except (ValueError, psycopg2.DatabaseError) as e:
-                hf.slack_msg("```{}```".format(e))
+                hf.slack_msg("```{} at line number {}```".format(e, i))
 
     duration = datetime.now()-start
 
+    # Send Slack notifications
     hf.slack_msg("""
     ```
     script: {}.py,
