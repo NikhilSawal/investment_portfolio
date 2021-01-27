@@ -117,4 +117,14 @@ cur.execute("""
                 ALTER COLUMN date TYPE TIMESTAMP
             """)
 
+cur.execute("""
+                ALTER TABLE stock_price
+                ALTER COLUMN top_3_news TYPE TEXT
+            """)
+
+cur.execute("""
+                ALTER TABLE stock_price
+                ALTER COLUMN news_source TYPE TEXT
+            """)
+
 postgresConnection.commit()
