@@ -2,9 +2,9 @@ import scrapy
 import datetime
 import helper_functions as hf
 import re
+from datetime import datetime
 
-# Calls hf (helper function) to send notifications to slack
-hf.slack_msg("Start stock price scrape")
+start = datetime.now()
 
 class IndexSpider(scrapy.Spider):
 
@@ -47,4 +47,14 @@ class IndexSpider(scrapy.Spider):
             'news_source'           : response.css('div.Fz\(11px\)::text')[-3:].getall(),
         }
 
-hf.slack_msg("End stock price scrape")
+duration = datetime.now()-start
+
+# Send Slack notifications
+hf.slack_msg("""
+```
+script: {}.py,
+datafile: {}.jl,
+status: {},
+runtime: {}
+```
+""".format("spider_stockPrice", "stock_prices", "Success", duration))

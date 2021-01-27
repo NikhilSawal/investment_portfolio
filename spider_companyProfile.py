@@ -1,9 +1,9 @@
 import scrapy
 import datetime
 import helper_functions as hf
+from datetime import datetime
 
-# Calls hf (helper function) to send notifications to slack
-hf.slack_msg("Get company info")
+start = datetime.now()
 
 class IndexSpider(scrapy.Spider):
 
@@ -40,4 +40,14 @@ class IndexSpider(scrapy.Spider):
             'employee_count' : response.css('span.Fw\(600\) span::text').get().replace(",",""),
         }
 
-hf.slack_msg("Get company info DONE!!")
+duration = datetime.now()-start
+
+# Send Slack notifications
+hf.slack_msg("""
+```
+script: {}.py,
+datafile: {}.jl,
+status: {},
+runtime: {}
+```
+""".format("spider_companyProfile", "company_profile", "Success", duration))

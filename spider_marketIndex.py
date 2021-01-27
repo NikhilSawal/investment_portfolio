@@ -2,9 +2,9 @@ import scrapy
 import datetime
 import helper_functions as hf
 import re
+from datetime import datetime
 
-# Calls hf (helper function) to send notifications to slack
-hf.slack_msg("Start scrape")
+start = datetime.now()
 
 class IndexSpider(scrapy.Spider):
 
@@ -42,4 +42,14 @@ class IndexSpider(scrapy.Spider):
             'nasdaq_delta(%)'   : delta_perc_pattern.sub(r'\1', index[8]),
         }
 
-hf.slack_msg("End scrape")
+duration = datetime.now()-start
+
+# Send Slack notifications
+hf.slack_msg("""
+```
+script: {}.py,
+datafile: {}.jl,
+status: {},
+runtime: {}
+```
+""".format("spider_marketIndex", "index", "Success", duration))
