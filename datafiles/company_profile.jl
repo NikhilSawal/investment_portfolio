@@ -108,3 +108,14 @@
 {"datetime": "2021-01-25 16:00:03", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "94000"}
 {"datetime": "2021-01-25 16:00:03", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "5000"}
 {"datetime": "2021-01-25 16:00:04", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "48016"}
+{"datetime": "2021-01-26 16:00:05", "name": "Uber Technologies, Inc. (UBER)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "21600"}
+{"datetime": "2021-01-26 16:00:05", "name": "Etsy, Inc. (ETSY)", "sector(s)": "Consumer Cyclical", "industry": "Internet Retail", "employee_count": "1374"}
+{"datetime": "2021-01-26 16:00:05", "name": "Chegg, Inc. (CHGG)", "sector(s)": "Consumer Defensive", "industry": "Education & Training Services", "employee_count": "1401"}
+{"datetime": "2021-01-26 16:00:05", "name": "Twilio Inc. (TWLO)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "3664"}
+{"datetime": "2021-01-26 16:00:05", "name": "Zynga Inc. (ZNGA)", "sector(s)": "Communication Services", "industry": "Electronic Gaming & Multimedia", "employee_count": "1883"}
+{"datetime": "2021-01-26 16:00:05", "name": "GoHealth, Inc. (GOCO)", "sector(s)": "Financial Services", "industry": "Insurance Brokers", "employee_count": "1892"}
+{"datetime": "2021-01-26 16:00:05", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
+{"datetime": "2021-01-26 16:00:05", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "48016"}
+{"datetime": "2021-01-26 16:00:05", "name": "Alphabet Inc. (GOOGL)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "132121"}
+{"datetime": "2021-01-26 16:00:06", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "5000"}
+{"datetime": "2021-01-26 16:00:06", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "94000"}
