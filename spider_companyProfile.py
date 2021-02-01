@@ -1,9 +1,9 @@
 import scrapy
 import datetime
 import helper_functions as hf
-from datetime import datetime
+import time
 
-start = datetime.now()
+start = time.time()
 
 class IndexSpider(scrapy.Spider):
 
@@ -40,7 +40,8 @@ class IndexSpider(scrapy.Spider):
             'employee_count' : response.css('span.Fw\(600\) span::text').get().replace(",",""),
         }
 
-duration = datetime.now()-start
+end = time.time()
+duration = end - start
 
 # Send Slack notifications
 hf.slack_msg("""

@@ -2,9 +2,9 @@ import scrapy
 import datetime
 import helper_functions as hf
 import re
-from datetime import datetime
+import time
 
-start = datetime.now()
+start = time.time()
 
 class IndexSpider(scrapy.Spider):
 
@@ -47,7 +47,8 @@ class IndexSpider(scrapy.Spider):
             'news_source'           : response.css('div.Fz\(11px\)::text')[-3:].getall(),
         }
 
-duration = datetime.now()-start
+end = time.time()
+duration = end - start
 
 # Send Slack notifications
 hf.slack_msg("""
