@@ -30,3 +30,7 @@ I currently have 3 scripts that scrape three different sets of data from **yahoo
 > Current technologies: Python, Scrapy, Slack (for notifications), Cronjob
 
 > Future technologies: Docker, Jenkins, Plotly, (Tensorflow/Keras/PyTorch)
+
+Following chart shows the project architecture.
+
+![Project Architecture](misc_files/project_arch.png)
