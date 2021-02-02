@@ -33,4 +33,4 @@ I currently have 3 scripts that scrape three different sets of data from **yahoo
 
 Following chart shows the project architecture.
 
-![Project Architecture](misc_files/project_arch.png)
+![Project Architecture](misc_files/Picture1.png)
