@@ -49,18 +49,22 @@ Some amount of data cleaning is performed like using regex to send clean numbers
 A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface perform SQL operations like ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script.
 
 4. **Virtual Environment:**  
-All the operations until the load stage are packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in **Figure 1** represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
+All the operations until the load stage are packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
 
 | <img src="misc_files/investment_db.png" alt="drawing" width="1000"/> |
 |:--:|
 | *Figure 2: Database tables & Columns* |
 
+| <img src="misc_files/pg_admin_sample_data.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 3: Stock price data in PostgreSQL* |
+
 5. **Slack:**  
-A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.*
+A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications
 
 | ![](misc_files/slack.png) |
 |:--:|
-| *Figure 3: Slack Notifications* |
+| *Figure 4: Slack Notifications* |
 
 ## 5. Resources
 - Web Scraping: [https://docs.scrapy.org/en/latest/intro/overview.html](https://docs.scrapy.org/en/latest/intro/overview.html)  
@@ -72,3 +76,4 @@ A ```helper_functions.py``` script sends job completion notifications to a slack
 [Abhishek Thakur: https://www.youtube.com/watch?v=jDqjSd42024&t=379s](https://www.youtube.com/watch?v=jDqjSd42024&t=379s)
 - Postgres: [Dataquest: https://www.dataquest.io/blog/loading-data-into-postgres/](https://www.dataquest.io/blog/loading-data-into-postgres/) ,  
 [PostgreSQL Tutorial: https://www.postgresqltutorial.com/postgresql-python/connect/](https://www.postgresqltutorial.com/postgresql-python/connect/)
+- Docker: [TechWorld with Nana: https://www.youtube.com/watch?v=3c-iBn73dDE&t=8377s](https://www.youtube.com/watch?v=3c-iBn73dDE&t=8377s)
