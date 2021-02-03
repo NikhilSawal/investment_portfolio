@@ -2,12 +2,12 @@
 
 ## 1. Overview
 
-This is an end-to-end project that covers several aspects of a machine learning project life-cycle. This project is my attempt to learn various technologies required for Data Science/Machine Learning and grow as a full stack Machine Learning Engineer. Through this project I have tried to cover 4 aspects of DS/ML project:
+This is an end-to-end implementation that tries to cover several aspects of a machine learning project life-cycle. This project is my attempt to learn various technologies required for Data Science/Machine Learning and grow as a full stack Machine Learning Engineer. Through this project I have tried to cover 4 aspects of DS/ML project:
 
-1. Data collection/extraction (web scraping)
-2. Data storage
-3. Continuous integration
-4. Visualization, model building & evaluation
+1. Data collection/extraction (web scraping)  **----> ```[COMPLETE]```**
+2. Data storage                               **----> ```[COMPLETE]```**
+3. Continuous integration                     **----> ```[IN-PROGRESS]```**
+4. Visualization, model building & evaluation **----> ```[IN-PROGRESS]```**
 
 ## 2. Problem Statement
 
@@ -25,12 +25,50 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 
 ## 4. Current Stage of Project
 
-I currently have 3 scripts that scrape three different sets of data from **yahoo finance**. I have **cronjobs** set to schedule the scrape. The data is then stored to 3 **.jl** files which is then piped to a Postgres Database. I also have a slackbot that sends notification to my slack channel for error handling.
+- Three python scripts are currently operational that scrape different sets of data from **yahoo finance**.
+- A  **cronjobs** is set to schedule these scrape & load the transformed data into Postgres.
+- The data from the scrape is first stored to 3 **.jl )viz: stock_prices.jl, index.jl, company_profile.jl)** files which are subsequently piped to a Postgres Database.
+- A Slackbot then sends job notifications to my slack channel for handling errors.
 
-> Current technologies: Python, Scrapy, Slack (for notifications), Cronjob
+> Current technologies: Python, Scrapy, Slack (for notifications), Cronjob, PostgreSQL, GIT
 
-> Future technologies: Docker, Jenkins, Plotly, (Tensorflow/Keras/PyTorch)
+> Future technologies: Docker, Jenkins, Plotly/Flask, (Tensorflow/Keras/PyTorch)
 
-Following chart shows the project architecture.
+*Figure 1* shows detailed representation of the project architecture.
+1. **WEB SCRAPING:**  
+The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !! scrape three sets of information related to stock prices and store them in separate files (json lines). All scrapes are currently scheduled using ```cron``` and the frequency is every hour on business days from 8:00 am - 4:00 pm (CST)
 
-![Project Architecture](misc_files/Picture1.png)
+2. **Transform:**  
+Some amount of data cleaning is performed like using regex to send clean numbers. The 3 green boxes are 3 separate files that store the scraped data in json lines format. All information related to data collected is shown in ```Figure 2```
+
+| ![Project Architecture](misc_files/Picture1.png) |
+|:--:|
+| *Figure 1: Project Architecture* |
+
+3. **Load:**  
+A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface perform SQL operations like ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script.
+
+4. **Virtual Environment:**  
+All the operations until the load stage are packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in **Figure 1** represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
+
+| <img src="misc_files/investment_db.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 2: Database tables & Columns* |
+
+5. **Slack:**  
+A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.*
+
+| ![](misc_files/slack.png) |
+|:--:|
+| *Figure 3: Slack Notifications* |
+
+## 5. Resources
+- Web Scraping: [https://docs.scrapy.org/en/latest/intro/overview.html](https://docs.scrapy.org/en/latest/intro/overview.html)  
+- Virtual Environment: [Corey Schafer: https://www.youtube.com/watch?v=Kg1Yvry_Ydk](https://www.youtube.com/watch?v=Kg1Yvry_Ydk)  
+- Cronjob: [Corey Schafer: https://www.youtube.com/watch?v=QZJ1drMQz1A&t=418s](https://www.youtube.com/watch?v=QZJ1drMQz1A&t=418s) ,  
+[Indian Pythonista: https://www.youtube.com/watch?v=Q2CNZGEH59Q&t=870s](https://www.youtube.com/watch?v=Q2CNZGEH59Q&t=870s)  
+- Environment variables: [Corey Schafer: https://www.youtube.com/watch?v=5iWhQWVXosU&t=164s](https://www.youtube.com/watch?v=5iWhQWVXosU&t=164s)
+- Slack bot: [Tech and Beyond with Moss: https://www.youtube.com/watch?v=lEQ68HhpO4g](https://www.youtube.com/watch?v=lEQ68HhpO4g) ,  
+[Abhishek Thakur: https://www.youtube.com/watch?v=jDqjSd42024&t=379s](https://www.youtube.com/watch?v=jDqjSd42024&t=379s)
+- Postgres: [Dataquest: https://www.dataquest.io/blog/loading-data-into-postgres/](https://www.dataquest.io/blog/loading-data-into-postgres/) ,  
+[PostgreSQL Tutorial: https://www.postgresqltutorial.com/postgresql-python/connect/](https://www.postgresqltutorial.com/postgresql-python/connect/)
