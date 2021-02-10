@@ -78,7 +78,7 @@ delta_pattern = re.compile(r'[()+-]*([+-]+\d+\.\d+)[%()]*')
 with open('/Users/nikhilsawal/OneDrive/investment_portfolio/tst_file.jl','w') as outputfile:
     with open('/Users/nikhilsawal/OneDrive/investment_portfolio/datafiles/stock_prices.jl', 'rb') as inputfile:
         for index, item in enumerate(json_lines.reader(inputfile)):
-            if index > 2518 and index < 2650:
+            if index > 2518 and index <= 2650:
                 item['price'] = item['price'].replace(",","")
                 item['delta_price'] = item['delta_price'].replace(",","")
                 item['delta_price_perc'] = delta_pattern.sub(r'\1', item['delta_price_perc'])
