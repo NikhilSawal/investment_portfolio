@@ -182,3 +182,12 @@
 {"datetime": "2021-02-08 16:00:03", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
 {"datetime": "2021-02-08 16:00:03", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
 {"datetime": "2021-02-08 16:00:04", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "5000"}
+{"datetime": "2021-02-09 16:00:02", "name": "Alphabet Inc. (GOOGL)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "135301"}
+{"datetime": "2021-02-09 16:00:03", "name": "Uber Technologies, Inc. (UBER)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "21600"}
+{"datetime": "2021-02-09 16:00:03", "name": "Zynga Inc. (ZNGA)", "sector(s)": "Communication Services", "industry": "Electronic Gaming & Multimedia", "employee_count": "1883"}
+{"datetime": "2021-02-09 16:00:03", "name": "Etsy, Inc. (ETSY)", "sector(s)": "Consumer Cyclical", "industry": "Internet Retail", "employee_count": "1374"}
+{"datetime": "2021-02-09 16:00:03", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
+{"datetime": "2021-02-09 16:00:03", "name": "Twilio Inc. (TWLO)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "3664"}
+{"datetime": "2021-02-09 16:00:03", "name": "GoHealth, Inc. (GOCO)", "sector(s)": "Financial Services", "industry": "Insurance Brokers", "employee_count": "1892"}
+{"datetime": "2021-02-09 16:00:03", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
+{"datetime": "2021-02-09 16:00:04", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "5000"}
