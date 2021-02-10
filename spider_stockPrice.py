@@ -35,7 +35,7 @@ class IndexSpider(scrapy.Spider):
         name = response.css('div.D\(ib\) h1.D\(ib\)::text').getall()
 
         # This object holds the regex pattern to perform ETL on scraped data
-        delta_pattern = re.compile(r'(.?\d+\.\d+)(\s).?(.?\d+\.\d+).+')
+        delta_pattern = re.compile(r'([+-]+\d+\.\d+)(\s).?([+-]+\d+\.\d+).+')
 
         yield {
             'datetime'              : datetime.datetime.now().strftime("%Y-%m-%d %X"),
