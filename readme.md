@@ -82,6 +82,8 @@ We use the following two rules to make these decisions:
 
 - **Buy when the short-term ma or 9-period ma crosses over the long-term ma or 12-period ma in a upward direction.** The reason why we do this is because 9-period ma crossing over 12-period ma in upward direction, signifies that the lift in the prices in the most recent times (9 days) is significantly higher than that in the past 12 days.
 
+The relative positions of the red dashed line in Fig. 5 shows how the weighted and exponential ma techniques are more quicker to identify signal as compared to the simple moving average.
+
 | <img src="eda_plots/moving_avg.png" alt="drawing" width="1000"/> |
 |:--:|
 | *Figure 5: Moving Averages* |
