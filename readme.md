@@ -30,8 +30,7 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 - The data from the scrape is first stored to 3 **.jl via: stock_prices.jl, index.jl, company_profile.jl** files which are subsequently piped to a Postgres Database.
 - A Slackbot then sends job notifications to my slack channel for handling errors.
 
-> Current technologies: Python, Scrapy, Slack (for notifications), Cronjob, PostgreSQL, GIT
-
+> Current technologies: Python, Scrapy, Slack (for notifications), Cronjob, PostgreSQL, GIT  
 > Future technologies: Docker, Jenkins, Plotly/Flask, (Tensorflow/Keras/PyTorch)
 
 *Figure 1* shows detailed representation of the project architecture.
@@ -88,7 +87,11 @@ The relative positions of the red dashed line in Fig. 5 shows how the weighted a
 |:--:|
 | *Figure 5: Moving Averages* |
 
+MACD or Moving average convergence divergence is another indicator commonly used in investment world to signal buy/sell decisions. It consists of two lines, the MACD line and Signal line
+> MACD = 12 period EMA - 26 period EMA (These EMA's are calculated over stock prices)  
+> Signal = 9 period EMA of MACD line  
 
+Sell when the MACD line crosses Signal line in downward direction and Buy when MACD line crosses Signal line in upward direction.
 
 | <img src="eda_plots/macd.png" alt="drawing" width="1000"/> |
 |:--:|
