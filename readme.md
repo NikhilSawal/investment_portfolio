@@ -88,6 +88,12 @@ The relative positions of the red dashed line in Fig. 5 shows how the weighted a
 |:--:|
 | *Figure 5: Moving Averages* |
 
+
+
+| <img src="eda_plots/macd.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 6: MACD* |
+
 ## 6. Resources
 - Web Scraping: [https://docs.scrapy.org/en/latest/intro/overview.html](https://docs.scrapy.org/en/latest/intro/overview.html)  
 - Virtual Environment: [Corey Schafer: https://www.youtube.com/watch?v=Kg1Yvry_Ydk](https://www.youtube.com/watch?v=Kg1Yvry_Ydk)  

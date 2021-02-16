@@ -2,7 +2,9 @@ import psycopg2
 import os
 import pandas.io.sql as psql
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import style
 # %matplotlib
 
 pd.set_option('display.max_rows', 20000)
@@ -66,56 +68,76 @@ def wma(data, colName, period):
 
     return [0 if i < period else temp[i-period] for i in range(len(data[colName]))]
 
+style.use('ggplot')
+
+def movAvg_plot(data, period_1, period_2, company=None):
+
+    if company != None:
+        df = data.loc[data['name'] == company,:]
+    else:
+        df = data
+
+    df.loc[:,'sma_{}'.format(period_1)] = sma(df, 'price', period_1)
+    df.loc[:,'sma_{}'.format(period_2)] = sma(df, 'price', period_2)
+
+    df.loc[:,'ema_{}'.format(period_1)] = ema(df, 'price', period_1)
+    df.loc[:,'ema_{}'.format(period_2)] = ema(df, 'price', period_2)
+
+    df.loc[:,'wma_{}'.format(period_1)] = wma(df, 'price', period_1)
+    df.loc[:,'wma_{}'.format(period_2)] = wma(df, 'price', period_2)
+
+    fig, ax = plt.subplots(3, 1)
+    fig.set_figheight(15)
+    fig.set_figwidth(10.5)
+    top_ax, mid_ax, bottom_ax = ax
+
+    # Simple Moving Average
+    top_ax.plot(df['price'][max(period_1, period_2)+1:], label='Stock Price')
+    top_ax.plot(df['sma_{}'.format(period_1)][max(period_1, period_2)+1:], label='{} period SMA'.format(period_1))
+    top_ax.plot(df['sma_{}'.format(period_2)][max(period_1, period_2)+1:], label='{} period SMA'.format(period_2))
+    top_ax.legend(loc='upper left', fontsize=10)
+    top_ax.set_title('Simple Moving Average', fontsize=20)
+
+    # Exponential Moving Average
+    mid_ax.plot(df['price'][max(period_1, period_2)+1:], label='Stock Price')
+    mid_ax.plot(df['ema_{}'.format(period_1)][max(period_1, period_2)+1:], label='{} period EMA'.format(period_1))
+    mid_ax.plot(df['ema_{}'.format(period_2)][max(period_1, period_2)+1:], label='{} period EMA'.format(period_2))
+    mid_ax.legend(loc='upper left', fontsize=10)
+    mid_ax.set_title('Exponential Moving Average', fontsize=20)
+
+    # Weighted Moving Average
+    bottom_ax.plot(df['price'][max(period_1, period_2)+1:], label='Stock Price')
+    bottom_ax.plot(df['wma_{}'.format(period_1)][max(period_1, period_2)+1:], label='{} period WMA'.format(period_1))
+    bottom_ax.plot(df['wma_{}'.format(period_2)][max(period_1, period_2)+1:], label='{} period WMA'.format(period_2))
+    bottom_ax.legend(loc='upper left', fontsize=10)
+    bottom_ax.set_title('Weighted Moving Average', fontsize=20)
+
+    plt.suptitle('{}'.format(company), fontsize=30, ha='center')
+    fig.savefig('eda_plots/moving_avg.png')
+
+# movAvg_plot(df, 12, 24, 'Uber Technologies, Inc. (UBER)')
 
 uber_df = df.loc[df['name'] == 'Uber Technologies, Inc. (UBER)',:]
 
-uber_df.loc[:,'sma_9'] = sma(uber_df, 'price', 9)
-uber_df.loc[:,'sma_12'] = sma(uber_df, 'price', 12)
-
-uber_df.loc[:,'ema_9'] = ema(uber_df, 'price', 9)
 uber_df.loc[:,'ema_12'] = ema(uber_df, 'price', 12)
+uber_df.loc[:,'ema_26'] = ema(uber_df, 'price', 26)
+uber_df.loc[:,'MACD'] = uber_df.loc[:,'ema_12'] - uber_df.loc[:,'ema_26']
+uber_df.loc[:,'Signal'] = ema(uber_df, 'MACD', 9)
 
-uber_df.loc[:,'wma_9'] = wma(uber_df, 'price', 9)
-uber_df.loc[:,'wma_12'] = wma(uber_df, 'price', 12)
+fig, ax = plt.subplots(2, 1)
+fig.set_figheight(10)
+fig.set_figwidth(10)
+top_ax, bottom_ax = ax
 
-# plt.figure(figsize=[10, 7.5])
-# plt.plot(uber_df['price'][12:], label='Stock Price')
-# plt.plot(uber_df['sma_9'][13:], label='9 period SMA')
-# plt.plot(uber_df['sma_12'][13:], label='12 period SMA')
-# plt.plot(uber_df['ema_9'][13:], label='9 period EMA')
-# plt.plot(uber_df['ema_12'][13:], label='12 period EMA')
-# plt.plot(uber_df['wma_9'][13:], label='9 period WMA')
-# plt.plot(uber_df['wma_12'][13:], label='12 period WMA')
-# plt.legend(loc='upper left')
-# plt.title('Uber - Simple Moving Average (SMA)')
-# plt.show()
+top_ax.plot(uber_df['price'][40:], label='Stock Price ($)')
+# top_ax.plot(uber_df['ema_12'][40:], label='EMA 12 ($)')
+# top_ax.plot(uber_df['ema_26'][40:], label='EMA 26 ($)')
+top_ax.legend(loc='upper left')
 
-fig, ax = plt.subplots(3, 1)
-fig.set_figheight(15)
-fig.set_figwidth(10.5)
-top_ax, mid_ax, bottom_ax = ax
+bottom_ax.plot(uber_df['MACD'][40:], label='MACD')
+bottom_ax.plot(uber_df['Signal'][40:], label='Signal')
+bottom_ax.legend(loc='upper left')
+bottom_ax.set_yticks(np.arange(-2, 3))
 
-
-top_ax.plot(uber_df['price'][12:], label='Stock Price')
-top_ax.plot(uber_df['sma_9'][13:], label='9 period SMA')
-top_ax.plot(uber_df['sma_12'][13:], label='12 period SMA')
-top_ax.legend(loc='upper left', fontsize=10)
-top_ax.set_title('Simple Moving Average', fontsize=20)
-
-
-mid_ax.plot(uber_df['price'][12:], label='Stock Price')
-mid_ax.plot(uber_df['ema_9'][13:], label='9 period EMA')
-mid_ax.plot(uber_df['ema_12'][13:], label='12 period EMA')
-mid_ax.legend(loc='upper left', fontsize=10)
-mid_ax.set_title('Exponential Moving Average', fontsize=20)
-
-
-bottom_ax.plot(uber_df['price'][12:], label='Stock Price')
-bottom_ax.plot(uber_df['wma_9'][13:], label='9 period WMA')
-bottom_ax.plot(uber_df['wma_12'][13:], label='12 period WMA')
-bottom_ax.legend(loc='upper left', fontsize=10)
-bottom_ax.set_title('Weighted Moving Average', fontsize=20)
-
-plt.suptitle('UBER', fontsize=50, ha='center')
-# plt.show()
-fig.savefig('/Users/nikhilsawal/OneDrive/investment_portfolio/eda_plots/moving_avg.png')
+plt.suptitle('Moving Average Convergence Divergence (MACD) - UBER', fontsize=20, ha='center')
+fig.savefig('eda_plots/macd.png')
