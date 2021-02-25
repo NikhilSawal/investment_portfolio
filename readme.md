@@ -124,7 +124,9 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
     - LSTM (Univariate and Multivariate)
     - ARIMA
     - Fast Forier Transform
-2. Classification
+
+
+2. Clustering:  
 Identify relationship between different sector/industry of the company. Strategy for hedging!!
     - Self Organizing Maps
 
