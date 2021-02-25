@@ -104,22 +104,22 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 
 ## **6. To-Do**
 
-### **Web Scraping**
+### Web Scraping
 1. Increase frequency of scrapes from current per-hour.
 2. Write script for rotating proxies, to avoid getting IP blocked.
 3. Write script to scrape min, max stock price, volume.
 4. Add random pause to the script.
 
-### **Data Storage**
+### Data Storage
 1. Read on normalizing database
 2. Create ID's for company names and reference them as foreign keys in different tables.
 3. Read how to create relationships between tables in db/
 
-### **Exploratory Data Analysis**
+### Exploratory Data Analysis
 1. Write a script to determine best Moving average period. ----> [Later will be used as input to make predictions]
 2. Use news data to identify set of keywords associated with stock price drops i.e negative delta and positive delta. Later use these term-frequencies to generate word cloud or network graph for visualizations
 
-### **Machine Learning**
+### Machine Learning
 1. Forecasting Models:    
     - LSTM (Univariate and Multivariate)
     - ARIMA
@@ -130,7 +130,7 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 Identify relationship between different sector/industry of the company. Strategy for hedging!!
     - Self Organizing Maps
 
-### **Web App**
+### Web App
 1. Deploy a flask app on Heroku
 2. Plan for the structure of the app
 
