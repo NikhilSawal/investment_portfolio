@@ -256,3 +256,28 @@
 {"datetime": "2021-02-19 16:00:03", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
 {"datetime": "2021-02-19 16:00:03", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "7000"}
 {"datetime": "2021-02-19 16:00:04", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "70757"}
+{"datetime": "2021-02-22 16:00:02", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
+{"datetime": "2021-02-22 16:00:03", "name": "Etsy, Inc. (ETSY)", "sector(s)": "Consumer Cyclical", "industry": "Internet Retail", "employee_count": "1374"}
+{"datetime": "2021-02-22 16:00:03", "name": "Twilio Inc. (TWLO)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "4629"}
+{"datetime": "2021-02-22 16:00:03", "name": "GoHealth, Inc. (GOCO)", "sector(s)": "Financial Services", "industry": "Insurance Brokers", "employee_count": "1892"}
+{"datetime": "2021-02-22 16:00:03", "name": "Alphabet Inc. (GOOGL)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "135301"}
+{"datetime": "2021-02-22 16:00:03", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
+{"datetime": "2021-02-22 16:00:03", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "70757"}
+{"datetime": "2021-02-22 16:00:04", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "7000"}
+{"datetime": "2021-02-23 16:00:03", "name": "Twilio Inc. (TWLO)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "4629"}
+{"datetime": "2021-02-23 16:00:03", "name": "Alphabet Inc. (GOOGL)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "135301"}
+{"datetime": "2021-02-23 16:00:03", "name": "Etsy, Inc. (ETSY)", "sector(s)": "Consumer Cyclical", "industry": "Internet Retail", "employee_count": "1374"}
+{"datetime": "2021-02-23 16:00:03", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
+{"datetime": "2021-02-23 16:00:03", "name": "GoHealth, Inc. (GOCO)", "sector(s)": "Financial Services", "industry": "Insurance Brokers", "employee_count": "1892"}
+{"datetime": "2021-02-23 16:00:04", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "7000"}
+{"datetime": "2021-02-23 16:00:04", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
+{"datetime": "2021-02-23 16:00:04", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "70757"}
+{"datetime": "2021-02-24 16:00:04", "name": "Alphabet Inc. (GOOGL)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "135301"}
+{"datetime": "2021-02-24 16:00:04", "name": "Etsy, Inc. (ETSY)", "sector(s)": "Consumer Cyclical", "industry": "Internet Retail", "employee_count": "1374"}
+{"datetime": "2021-02-24 16:00:04", "name": "Twilio Inc. (TWLO)", "sector(s)": "Communication Services", "industry": "Internet Content & Information", "employee_count": "4629"}
+{"datetime": "2021-02-24 16:00:04", "name": "United Airlines Holdings, Inc. (UAL)", "sector(s)": "Industrials", "industry": "Airlines", "employee_count": "74400"}
+{"datetime": "2021-02-24 16:00:04", "name": "Chegg, Inc. (CHGG)", "sector(s)": "Consumer Defensive", "industry": "Education & Training Services", "employee_count": "1616"}
+{"datetime": "2021-02-24 16:00:04", "name": "GoHealth, Inc. (GOCO)", "sector(s)": "Financial Services", "industry": "Insurance Brokers", "employee_count": "1892"}
+{"datetime": "2021-02-24 16:00:05", "name": "Chipotle Mexican Grill, Inc. (CMG)", "sector(s)": "Consumer Cyclical", "industry": "Restaurants", "employee_count": "88000"}
+{"datetime": "2021-02-24 16:00:05", "name": "Tesla, Inc. (TSLA)", "sector(s)": "Consumer Cyclical", "industry": "Auto Manufacturers", "employee_count": "70757"}
+{"datetime": "2021-02-24 16:00:05", "name": "Shopify Inc. (SHOP)", "sector(s)": "Technology", "industry": "Software\u2014Application", "employee_count": "7000"}
