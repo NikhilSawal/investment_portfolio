@@ -93,21 +93,42 @@ import re
 
 ####################################################################################################
 
-# 02/10/2021
-# Fixes data bug in index.jl on 2021-02-05 08:00:03
-delta_perc_pattern = re.compile(r'(.?\d+\.\d+).+')
+# # 02/10/2021
+# # Fixes data bug in index.jl on 2021-02-05 08:00:03
+# delta_perc_pattern = re.compile(r'(.?\d+\.\d+).+')
+#
+# with open('/Users/nikhilsawal/OneDrive/investment_portfolio/tst_file.jl','w') as outputfile:
+#     with open('/Users/nikhilsawal/OneDrive/investment_portfolio/datafiles/index.jl', 'rb') as inputfile:
+#         for index, item in enumerate(json_lines.reader(inputfile)):
+#             if index == 170:
+#                 item['s&p_500_delta'] = item['s&p_500_delta'].replace(",","")
+#                 item['dow_30_delta'] = item['dow_30_delta'].replace(",","")
+#                 item['nasdaq_delta'] = item['nasdaq_delta'].replace(",","")
+#                 # print(item)
+#                 json.dump(item, outputfile)
+#                 outputfile.write('\n')
+#             else:
+#                 json.dump(item, outputfile)
+#                 outputfile.write('\n')
+#                 # pass
 
-with open('/Users/nikhilsawal/OneDrive/investment_portfolio/tst_file.jl','w') as outputfile:
-    with open('/Users/nikhilsawal/OneDrive/investment_portfolio/datafiles/index.jl', 'rb') as inputfile:
-        for index, item in enumerate(json_lines.reader(inputfile)):
-            if index == 170:
-                item['s&p_500_delta'] = item['s&p_500_delta'].replace(",","")
-                item['dow_30_delta'] = item['dow_30_delta'].replace(",","")
-                item['nasdaq_delta'] = item['nasdaq_delta'].replace(",","")
-                # print(item)
-                json.dump(item, outputfile)
-                outputfile.write('\n')
-            else:
-                json.dump(item, outputfile)
-                outputfile.write('\n')
-                # pass
+# ####################################################################################################
+#
+# 02/25/2021
+# Fixes data bug in stock_price.jl for 2021-02-25 14:00:03 line 3996
+# delta_pattern = re.compile(r'([+-]?\d+\.\d+)(\s).?([+-]?\d+\.\d+).+')
+#
+# with open('/Users/nikhilsawal/OneDrive/investment_portfolio/tst_file.jl','w') as outputfile:
+#     with open('/Users/nikhilsawal/OneDrive/investment_portfolio/datafiles/stock_prices.jl', 'rb') as inputfile:
+#         for index, item in enumerate(json_lines.reader(inputfile)):
+#             if index > 3994:
+#                 item['price'] = item['price'].replace(",","")
+#                 item['delta_price'] = item['delta_price'].replace(",","")
+#                 item['delta_price_perc'] = delta_pattern.sub(r'\1', item['delta_price_perc'])
+#                 print(item)
+#                 # json.dump(item, outputfile)
+#                 # outputfile.write('\n')
+#             else:
+#                 # json.dump(item, outputfile)
+#                 # outputfile.write('\n')
+#                 pass
