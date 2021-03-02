@@ -33,21 +33,22 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 > Current technologies: Python, Scrapy, Slack (for notifications), Cronjob, PostgreSQL, GIT  
 > Future technologies: Docker, Jenkins, Plotly/Flask, (Tensorflow/Keras/PyTorch)
 
-*Figure 1* shows detailed representation of the project architecture.
-1. **WEB SCRAPING:**  
+*Figure 1* shows detailed representation of the project architecture.    
+
+### **4.1 WEB SCRAPING:**  
 The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !! scrape three sets of information related to stock prices and store them in separate files (json lines). All scrapes are currently scheduled using ```cron``` and the frequency is every hour on business days from 8:00 am - 4:00 pm (CST)
 
-2. **Transform:**  
+### **4.2 Transform:**  
 Some amount of data cleaning is performed like using regex to send clean numbers. The 3 green boxes are 3 separate files that store the scraped data in json lines format. All information related to data collected is shown in ```Figure 2```
 
 | ![Project Architecture](misc_files/Picture1.png) |
 |:--:|
 | *Figure 1: Project Architecture* |
 
-3. **Load:**  
+### **4.3 Load:**  
 A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface perform SQL operations like ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script.
 
-4. **Virtual Environment:**  
+### **4.4 Virtual Environment:**  
 All the operations until the load stage are packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
 
 | <img src="misc_files/investment_db.png" alt="drawing" width="1000"/> |
@@ -58,7 +59,7 @@ All the operations until the load stage are packaged into a virtual environment 
 |:--:|
 | *Figure 3: Stock price data in PostgreSQL* |
 
-5. **Slack:**  
+### **4.5 Slack:**  
 A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications
 
 | ![](misc_files/slack.png) |
