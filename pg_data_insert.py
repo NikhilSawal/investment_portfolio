@@ -55,7 +55,8 @@ def pipe_data(file_name):
                 cur.execute(sql, values)
                 conn.commit()
             except (ValueError, psycopg2.DatabaseError) as e:
-                hf.slack_msg("```{} at line number {}```".format(e, i))
+                hf.slack_msg("```{} at line number {} in file {}```".format(e, i, file_name))
+                break
 
     duration = datetime.now()-start
 
