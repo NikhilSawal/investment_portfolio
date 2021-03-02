@@ -60,11 +60,17 @@ All the operations until the load stage are packaged into a virtual environment 
 | *Figure 3: Stock price data in PostgreSQL* |
 
 ### **4.5 Slack:**  
-A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications
+A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications.
 
 | ![](misc_files/slack.png) |
 |:--:|
 | *Figure 4: Slack Notifications* |
+
+```Figure 5.``` shows the sample error message when the spider scrapes data that is not compatible for loading into the database. The error also highlights the line on which the error occurred for easy tracking.
+
+| ![](misc_files/slack_error_msg.png) |
+|:--:|
+| *Figure 5: Slack Error Notification* |
 
 ## **5. Exploratory Data Analysis (EDA)**
 
@@ -76,7 +82,7 @@ Moving averages are a commonly used techniques to smooth a noisy time-series dat
 
 #### Moving Averages
 
-Fig. 5 compares how each of the above techniques respond to price change in Uber stock price. Each of the moving averages is calculated using a 9 and 12 period timeframe, which means that each instance of the moving averages is computed as a function of the previous 9 or 12 stock prices. The reason why we use two different timeframes (9 and 12) to compute moving averages is because the cross-overs between the two is considered as a signal to buy/sell stocks.
+Figure. 6 compares how each of the above techniques respond to price change in Uber stock price. Each of the moving averages is calculated using a 9 and 12 period timeframe, which means that each instance of the moving averages is computed as a function of the previous 9 or 12 stock prices. The reason why we use two different timeframes (9 and 12) to compute moving averages is because the cross-overs between the two is considered as a signal to buy/sell stocks.
 
 Right of the bat we can see that the simple moving average is a more smooth curve as compared to the other two but is less responsive to price changes. This behavior stems from the fact that the simple moving average treats all previous stock prices equally where as the other two compensate by putting weights on them.
 
@@ -89,7 +95,7 @@ The relative positions of the red dashed line in Fig. 5 shows how the weighted a
 
 | <img src="eda_plots/moving_avg.png" alt="drawing" width="1000"/> |
 |:--:|
-| *Figure 5: Moving Averages* |
+| *Figure 6: Moving Averages* |
 
 #### MACD
 
@@ -101,7 +107,7 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 
 | <img src="eda_plots/macd.png" alt="drawing" width="1000"/> |
 |:--:|
-| *Figure 6: MACD* |
+| *Figure 7: MACD* |
 
 ## **6. To-Do**
 
@@ -129,7 +135,7 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 
 2. Clustering:  
 Identify relationship between different sector/industry of the company. Strategy for hedging!!
-    - Self Organizing Maps
+    - Self Organizing Maps (SOM)
 
 ### Web App
 1. Deploy a flask app on Heroku
