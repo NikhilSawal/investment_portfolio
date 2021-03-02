@@ -5,17 +5,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
-# import xgboost
-# %matplotlib
 
 pd.set_option('display.max_rows', 20000)
 pd.set_option('display.max_columns', 50)
 
-file_path = "/Users/nikhilsawal/OneDrive/investment_portfolio/datafiles/"
-file_name = "stock_prices.jl"
-pg_auth = os.environ.get("PG_AUTH")
 
-# print(pg_auth)
+pg_auth = os.environ.get("PG_AUTH")
 
 conn = psycopg2.connect(host="localhost",
                         user="postgres",
@@ -75,9 +70,9 @@ style.use('ggplot')
 def movAvg_plot(data, period_1, period_2, company=None):
 
     if company != None:
-        df = data.loc[data['name'] == company,:]
+        df = data.loc[data['name'] == company,:].copy()
     else:
-        df = data
+        df = data.copy()
 
     df.loc[:,'sma_{}'.format(period_1)] = sma(df, 'price', period_1)
     df.loc[:,'sma_{}'.format(period_2)] = sma(df, 'price', period_2)
@@ -119,7 +114,7 @@ def movAvg_plot(data, period_1, period_2, company=None):
 
 # movAvg_plot(df, 12, 24, 'Uber Technologies, Inc. (UBER)')
 
-uber_df = df.loc[df['name'] == 'Uber Technologies, Inc. (UBER)',:]
+uber_df = df.loc[df['name'] == 'Uber Technologies, Inc. (UBER)',:].copy()
 
 uber_df.loc[:,'ema_12'] = ema(uber_df, 'price', 12)
 uber_df.loc[:,'ema_26'] = ema(uber_df, 'price', 26)
