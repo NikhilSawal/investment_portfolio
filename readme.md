@@ -36,28 +36,45 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 *Figure 1* shows detailed representation of the project architecture.    
 
 ### **4.1 WEB SCRAPING:**  
-The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !! scrape three sets of information related to stock prices and store them in separate files (json lines). All scrapes are currently scheduled using ```cron``` and the frequency is every hour on business days from 8:00 am - 4:00 pm (CST)
+The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !! scrape three sets of information related to stock prices and store them in separate files (json lines). All scrapes are currently scheduled using ```cron``` and the frequency is every hour on business days from 8:00 am - 4:00 pm (CST). Following snippet shows the sample json lines format that is used by the scraper to store stock prices.
+
+```
+{"datetime": "2020-12-28 08:00:03", "name": "Uber Technologies, Inc. (UBER)", "price": "52.88", "delta_price": "-0.83", "delta_price_perc": "-1.55", "top_3_news": ["China Shows Jack Ma What an Activist Can Do", "Cathie Wood: Uber And Lyft Missed The Boat", "Zoom, Slack, and DocuSign: COVID-19 put these companies on the map in 2020"], "news_source": ["Bloomberg", "Benzinga", "Yahoo Finance"]}
+{"datetime": "2020-12-28 08:00:03", "name": "Twilio Inc. (TWLO)", "price": "362.88", "delta_price": "-0.40", "delta_price_perc": "-0.11", "top_3_news": ["Is Twilio Stock A Buy Now After 435% Surge?", "Twilio Inc. (TWLO) Stock Sinks As Market Gains: What You Should Know", "Is Twilio Stock a Buy?"], "news_source": ["Investor's Business Daily", "Zacks", "Motley Fool"]}
+{"datetime": "2020-12-28 08:00:03", "name": "Chegg, Inc. (CHGG)", "price": "92.41", "delta_price": "-0.67", "delta_price_perc": "-0.72", "top_3_news": ["These Are The 5 Best Stocks To Buy And Watch Now", "Generac, Intuitive Surgical, Chegg Lead 5 Stocks Holding At Buy Points", "Chegg (CHGG) Stock Sinks As Market Gains: What You Should Know"], "news_source": ["Motley Fool", "Investor's Business Daily", "Zacks"]}
+{"datetime": "2020-12-28 08:00:03", "name": "Alphabet Inc. (GOOGL)", "price": "1734.16", "delta_price": "+5.93", "delta_price_perc": "+0.34", "top_3_news": ["Alphabet Is One of Barron\u2019s Top Stock Picks for the New Year. Here\u2019s Why.", "Yelp Adapted to the Pandemic. Now Its Stock Is Poised to Rebound.", "Quantum computers\u2019 power will remake competition in industries from technology to finance"], "news_source": ["Barrons.com", "Barrons.com", "MarketWatch"]}
+{"datetime": "2020-12-28 08:00:03", "name": "Zynga Inc. (ZNGA)", "price": "9.91", "delta_price": "-0.02", "delta_price_perc": "-0.20", "top_3_news": ["Black Eyed Peas Encourage Fans to #PlayApartTogether for the Holidays In Social Campaign With Zynga", "Zynga (ZNGA) Stock Sinks As Market Gains: What You Should Know", "3 Videogame Stocks Set to Rise in 2021"], "news_source": ["Business Wire", "Zacks", "Barrons.com"]}
+{"datetime": "2020-12-28 08:00:03", "name": "Etsy, Inc. (ETSY)", "price": "190.31", "delta_price": "+0.14", "delta_price_perc": "+0.07", "top_3_news": ["3 Growth Stocks That Doubled in 2020 and Could Do It Again in 2021", "Is There More Growth In Store For Etsy's (NASDAQ:ETSY) Returns On Capital?", "3 Surefire Stocks to Buy With Your $600 Stimulus Check"], "news_source": ["Simply Wall St.", "Simply Wall St.", "Motley Fool"]}
+{"datetime": "2020-12-28 08:00:04", "name": "United Airlines Holdings, Inc. (UAL)", "price": "43.26", "delta_price": "-0.85", "delta_price_perc": "-1.93", "top_3_news": ["10 Best Airline Stocks To Buy For 2021", "United Airlines (UAL) Stock Sinks As Market Gains: What You Should Know", "United passengers traveling to Newark from U.K. required to show negative COVID test"], "news_source": ["Motley Fool", "Zacks", "MarketWatch"]}
+{"datetime": "2020-12-28 08:00:04", "name": "GoHealth, Inc. (GOCO)", "price": "14.10", "delta_price": "+0.18", "delta_price_perc": "+1.29", "top_3_news": ["Is GOCO A Good Stock To Buy Now?", "GoHealth Appoints Dr. Paul Hain, M.D. as Chief Medical Officer", "GoHealth to Present at the Evercore Virtual Healthcare Conference on December 2, 2020"], "news_source": ["Insider Monkey", "PR Newswire", "PR Newswire"]}
+{"datetime": "2020-12-28 08:00:04", "name": "Shopify Inc. (SHOP)", "price": "1225.52", "delta_price": "+27.56", "delta_price_perc": "+2.30", "top_3_news": ["Is Shopify Stock a Buy After Its Online Holiday Shopping Bonanza?", "Shopify vs Wayfair: Which E-Commerce Stock Could Continue to Rise in 2021?", "These 3 Stocks Are the Real Deal"], "news_source": ["Motley Fool", "TipRanks", "Motley Fool"]}
+{"datetime": "2020-12-28 08:00:04", "name": "Tesla, Inc. (TSLA)", "price": "661.77", "delta_price": "+15.79", "delta_price_perc": "+2.44", "top_3_news": ["5 Things You Didn't Know About QuantumScape", "The Stock Market Could Gain Another 10% Next Year, Experts Say", "QuantumScape Was Unknown. Now It\u2019s One of the Most Valuable Stocks in the Car Industry."], "news_source": ["Motley Fool", "Barrons.com", "Barrons.com"]}
+{"datetime": "2020-12-28 08:00:04", "name": "Chipotle Mexican Grill, Inc. (CMG)", "price": "1412.55", "delta_price": "+1.56", "delta_price_perc": "+0.11", "top_3_news": ["Data: Foot traffic at Domino\u2019s, Burger King, Pizza Hut tumble by more than half during COVID-19", "These Are The 5 Best Stocks To Buy And Watch Now", "Chipotle Mexican Grill (CMG) Stock Sinks As Market Gains: What You Should Know"], "news_source": ["Yahoo Finance", "Investor's Business Daily", "Zacks"]}
+
+```
 
 ### **4.2 Transform:**  
-Some amount of data cleaning is performed like using regex to send clean numbers. The 3 green boxes are 3 separate files that store the scraped data in json lines format. All information related to data collected is shown in ```Figure 2```
+The raw format of data presented in the above section is then cleaned using regex expressions before it makes it way to the database. ```Figure 1``` highlights the architecture of the project. The 3 green boxes are 3 separate files that store the scraped data in json lines format.
 
-| ![Project Architecture](misc_files/Picture1.png) |
+| ![Project Architecture](misc_files/project_arch_march3.png) |
 |:--:|
 | *Figure 1: Project Architecture* |
 
 ### **4.3 Load:**  
-A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface perform SQL operations like ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script.
-
-### **4.4 Virtual Environment:**  
-All the operations until the load stage are packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
+A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface to perform SQL like operations eg: ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script. All information related to data collected is shown in ```Figure 2```
 
 | <img src="misc_files/investment_db.png" alt="drawing" width="1000"/> |
 |:--:|
 | *Figure 2: Database tables & Columns* |
 
+```Figure 3``` shows sample data query in PostgreSQL
+
 | <img src="misc_files/pg_admin_sample_data.png" alt="drawing" width="1000"/> |
 |:--:|
 | *Figure 3: Stock price data in PostgreSQL* |
+
+### **4.4 Virtual Environment:**  
+All the operations until the load stage are neatly packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
 
 ### **4.5 Slack:**  
 A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications.
