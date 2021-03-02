@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
+# import xgboost
 # %matplotlib
 
 pd.set_option('display.max_rows', 20000)
@@ -26,6 +27,7 @@ cur.execute("SELECT * FROM stock_price")
 rows = cur.fetchall()
 
 df = psql.read_sql('select * from stock_price', conn)
+df_index = psql.read_sql('select * from market_index', conn)
 
 def sma(data, colName, period):
     temp = []
@@ -130,8 +132,6 @@ fig.set_figwidth(10)
 top_ax, bottom_ax = ax
 
 top_ax.plot(uber_df['price'][40:], label='Stock Price ($)')
-# top_ax.plot(uber_df['ema_12'][40:], label='EMA 12 ($)')
-# top_ax.plot(uber_df['ema_26'][40:], label='EMA 26 ($)')
 top_ax.legend(loc='upper left')
 
 bottom_ax.plot(uber_df['MACD'][40:], label='MACD')
@@ -140,4 +140,16 @@ bottom_ax.legend(loc='upper left')
 bottom_ax.set_yticks(np.arange(-2, 3))
 
 plt.suptitle('Moving Average Convergence Divergence (MACD) - UBER', fontsize=20, ha='center')
-fig.savefig('eda_plots/macd.png')
+# fig.savefig('eda_plots/macd.png')
+
+
+fig, ax = plt.subplots(4, 1)
+top_ax, mid1_ax, mid2_ax, bottom_ax = ax
+
+top_ax.plot(uber_df['price'], label='Stock Pirce')
+
+mid1_ax.plot(df_index['snp_500'], label='S&P 500')
+mid2_ax.plot(df_index['dow_30'], label='Dow Jones')
+bottom_ax.plot(df_index['nasdaq'], label='NASDAQ')
+plt.show()
+# print(df_index.head())
