@@ -46,7 +46,7 @@ def pipe_data(file_name):
 
     # Pipe data to Postgres
     with open(file_path+file_name) as inpFile:
-
+        unicode = ""
         for i, j in enumerate(inpFile):
             id = i+1
 
@@ -54,8 +54,10 @@ def pipe_data(file_name):
                 values = (tuple([id] + list(ast.literal_eval(j).values())))
                 cur.execute(sql, values)
                 conn.commit()
+                unicode = "\u2705"
             except (ValueError, psycopg2.DatabaseError) as e:
-                hf.slack_msg("```{} at line number {} in file {}```".format(e, i, file_name))
+                hf.slack_msg("```{} at line number {} in file {}```".format(e, i, "\u274C"+file_name))
+                unicode = "\u274C"
                 break
 
     duration = datetime.now()-start
@@ -68,7 +70,7 @@ def pipe_data(file_name):
     status: {},
     runtime: {}
     ```
-    """.format("pg_data_insert", file_name, "Success", duration))
+    """.format("pg_data_insert", unicode+file_name, "Success", duration))
 
 def main():
 
