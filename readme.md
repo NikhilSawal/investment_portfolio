@@ -83,7 +83,7 @@ A ```helper_functions.py``` script sends job completion notifications to a slack
 |:--:|
 | *Figure 4: Slack Notifications* |
 
-```Figure 5.``` shows the sample error message when the spider scrapes data that is not compatible for loading into the database. The error also highlights the line on which the error occurred for easy tracking.
+```Figure 5.``` shows the sample error message when the spider scrapes data formats that is not compatible for loading into the database. **The error also highlights the filename and line number of the respective datafile on which the error occurred for easy tracking.**
 
 | ![](misc_files/slack_error_msg.png) |
 |:--:|
