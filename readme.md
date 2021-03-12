@@ -1,4 +1,4 @@
-# **Investment Portfolio**
+# **Investment Portfolio** [YouTube Link](https://www.youtube.com/watch?v=n83qkztDRfA)
 
 ## **1. Overview**
 
