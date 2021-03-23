@@ -1,6 +1,11 @@
 # **Investment Portfolio** [YouTube Link](https://www.youtube.com/watch?v=n83qkztDRfA)
 
-## **1. Overview**
+## Table of contents
+1. [Overview](#overview)
+2. [Problem Statement](#problem_statement)
+3. [Motivation](#motivation)
+
+## **1. Overview** <a name="overview"></a>
 
 This is an end-to-end implementation that tries to cover several aspects of a machine learning project life-cycle. This project is my attempt to learn various technologies required for Data Science/Machine Learning and grow as a full stack Machine Learning Engineer. Through this project I have tried to cover 4 aspects of DS/ML project:
 
@@ -9,13 +14,13 @@ This is an end-to-end implementation that tries to cover several aspects of a ma
 3. Continuous integration                     **----> ```[IN-PROGRESS]```**
 4. EDA, Visualization, model building & evaluation **----> ```[IN-PROGRESS]```**
 
-## **2. Problem Statement**
+## **2. Problem Statement** <a name="problem_statement"></a>
 
 Coming up with innovative techniques to predict the market accurately, has become increasingly important given the uncertain times we live in. Through this project I want to emphasize on two broad categories of Machine Learning problems to test the following hypothesis:
 - **Time series forecasting:** Can a rich storage of data help us predict important aspects of the stock market?
 - **Natural language processing:** Can we use news data to model the impact of certain keywords on the trends of stocks belonging to different sector/industries?
 
-## **3. Motivation**
+## **3. Motivation** <a name="motivation"></a>
 
 The idea for this project, struck me when we were hit by the pandemic in early 2020. I used to work for a gift cards selling company i.e [Raise Marketplace.](https://www.raise.com/) that acquired gift cards from over 3000 brands and sold them on its marketplace. The business was heavily impacted because of the pandemic, since a huge chunk of the companies revenue came from the travels & hotels industry.
 
@@ -126,13 +131,18 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 |:--:|
 | *Figure 7: MACD* |
 
-## **6. To-Do**
+## **6. Machine Learning**
+### 6.1 Forecasting
+#### 6.1.1 Long Short Term Memory (LSTM)
+
+## **7. To-Do**
 
 ### Web Scraping
 1. Increase frequency of scrapes from current per-hour.
 2. Write script for rotating proxies, to avoid getting IP blocked.
 3. Write script to scrape min, max stock price, volume.
 4. Add random pause to the script.
+5. Write a prediction model to predict missing values.
 
 ### Data Storage
 1. Read on normalizing database
