@@ -1,6 +1,6 @@
 # **Investment Portfolio** [YouTube Link](https://www.youtube.com/watch?v=n83qkztDRfA)
 
-## Table of contents
+## **Table of contents** <a name="top"></a>
 1. [Overview](#overview)
 2. [Problem Statement](#problem_statement)
 3. [Motivation](#motivation)
@@ -24,7 +24,7 @@ Coming up with innovative techniques to predict the market accurately, has becom
 - **Time series forecasting:** Can a rich storage of data help us predict important aspects of the stock market?
 - **Natural language processing:** Can we use news data to model the impact of certain keywords on the trends of stocks belonging to different sector/industries?
 
-## **3. Motivation** <a name="motivation"></a>
+## **3. Motivation** <a name="motivation"></a> [Top](#top)
 
 The idea for this project, struck me when we were hit by the pandemic in early 2020. I used to work for a gift cards selling company i.e [Raise Marketplace.](https://www.raise.com/) that acquired gift cards from over 3000 brands and sold them on its marketplace. The business was heavily impacted because of the pandemic, since a huge chunk of the companies revenue came from the travels & hotels industry.
 
