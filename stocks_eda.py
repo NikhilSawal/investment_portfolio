@@ -1,5 +1,6 @@
 import psycopg2
 import os
+import datetime
 import pandas.io.sql as psql
 import pandas as pd
 import numpy as np
@@ -9,7 +10,7 @@ from matplotlib import style
 pd.set_option('display.max_rows', 20000)
 pd.set_option('display.max_columns', 50)
 
-
+# Setup connection with DB
 pg_auth = os.environ.get("PG_AUTH")
 
 conn = psycopg2.connect(host="localhost",
@@ -21,9 +22,13 @@ cur = conn.cursor()
 cur.execute("SELECT * FROM stock_price")
 rows = cur.fetchall()
 
-df = psql.read_sql('select * from stock_price', conn)
-df_index = psql.read_sql('select * from market_index', conn)
+# Query data
+df = psql.read_sql("select * from stock_price where date > '2021-01-01 07:00:03'", conn)
+df_index = psql.read_sql("select * from market_index where date > '2021-01-01 07:00:03'", conn)
 
+print(df['name'].unique())
+
+# Get simple moving average (SMA)
 def sma(data, colName, period):
     temp = []
     for i in range(period, len(data[colName])):
@@ -32,7 +37,7 @@ def sma(data, colName, period):
 
     return [0 if i < period else temp[i-period] for i in range(len(data[colName]))]
 
-
+# Get exponential moving average (EMA)
 def ema(data, colName, period):
 
     alpha = 2/(period+1)
@@ -45,7 +50,7 @@ def ema(data, colName, period):
 
     return [0 if i < period else temp[i-period] for i in range(len(data[colName]))]
 
-
+# Get weighted moving average (WMA)
 def wma(data, colName, period):
 
     denom = (period*(period+1))/2
@@ -67,6 +72,7 @@ def wma(data, colName, period):
 
 style.use('ggplot')
 
+# Make plots on moving average
 def movAvg_plot(data, period_1, period_2, company=None):
 
     if company != None:
@@ -110,41 +116,67 @@ def movAvg_plot(data, period_1, period_2, company=None):
     bottom_ax.set_title('Weighted Moving Average', fontsize=20)
 
     plt.suptitle('{}'.format(company), fontsize=30, ha='center')
-    fig.savefig('eda_plots/moving_avg.png')
+    plt.show()
+    # fig.savefig('eda_plots/moving_avg.png')
 
 # movAvg_plot(df, 12, 24, 'Uber Technologies, Inc. (UBER)')
 
+# Compute different moving averages for UBER
 uber_df = df.loc[df['name'] == 'Uber Technologies, Inc. (UBER)',:].copy()
+uber_df = uber_df.sort_values(by=['date'])
+uber_df['date'] = pd.to_datetime(uber_df['date'], format="%Y-%m-%d-%H") #.apply(lambda x: datetime.datetime.date(x))
+df_index['date'] = pd.to_datetime(df_index['date'], format="%Y-%m-%d-%H")
 
-uber_df.loc[:,'ema_12'] = ema(uber_df, 'price', 12)
-uber_df.loc[:,'ema_26'] = ema(uber_df, 'price', 26)
-uber_df.loc[:,'MACD'] = uber_df.loc[:,'ema_12'] - uber_df.loc[:,'ema_26']
-uber_df.loc[:,'Signal'] = ema(uber_df, 'MACD', 9)
+uber_df['date'] = uber_df['date'].astype(str)
+uber_df = uber_df.set_index('date')
 
-fig, ax = plt.subplots(2, 1)
-fig.set_figheight(10)
-fig.set_figwidth(10)
-top_ax, bottom_ax = ax
+plt.plot(uber_df['price'][:20])
+plt.gcf().autofmt_xdate()
+plt.show()
 
-top_ax.plot(uber_df['price'][40:], label='Stock Price ($)')
-top_ax.legend(loc='upper left')
+# uber_df.loc[:,'ema_12'] = ema(uber_df, 'price', 12)
+# uber_df.loc[:,'ema_26'] = ema(uber_df, 'price', 26)
+# uber_df.loc[:,'MACD'] = uber_df.loc[:,'ema_12'] - uber_df.loc[:,'ema_26']
+# uber_df.loc[:,'Signal'] = ema(uber_df, 'MACD', 9)
+# print(uber_df[['date', 'price']].head(30))
 
-bottom_ax.plot(uber_df['MACD'][40:], label='MACD')
-bottom_ax.plot(uber_df['Signal'][40:], label='Signal')
-bottom_ax.legend(loc='upper left')
-bottom_ax.set_yticks(np.arange(-2, 3))
+# fig, ax = plt.subplots(2, 1)
+# fig.set_figheight(10)
+# fig.set_figwidth(10)
+# top_ax, bottom_ax = ax
+#
+# top_ax.plot(uber_df['price'][40:], label='Stock Price ($)')
+# top_ax.legend(loc='upper left')
+#
+# bottom_ax.plot(uber_df['MACD'][40:], label='MACD')
+# bottom_ax.plot(uber_df['Signal'][40:], label='Signal')
+# bottom_ax.legend(loc='upper left')
+# bottom_ax.set_yticks(np.arange(-2, 3))
+# plt.suptitle('Moving Average Convergence Divergence (MACD) - UBER', fontsize=20, ha='center')
+# plt.show()
 
-plt.suptitle('Moving Average Convergence Divergence (MACD) - UBER', fontsize=20, ha='center')
 # fig.savefig('eda_plots/macd.png')
 
+# fig, ax = plt.subplots(4, 1)
+# top_ax, mid1_ax, mid2_ax, bottom_ax = ax
+#
+# top_ax.plot(uber_df['date'], uber_df['price'], label='Stock Pirce')
+#
+# mid1_ax.plot(df_index['date'], df_index['snp_500'], label='S&P 500')
+# mid2_ax.plot(df_index['date'], df_index['dow_30'], label='Dow Jones')
+# bottom_ax.plot(df_index['date'], df_index['nasdaq'], label='NASDAQ')
+# plt.show()
 
-fig, ax = plt.subplots(4, 1)
-top_ax, mid1_ax, mid2_ax, bottom_ax = ax
+# for i in range(0, 72, 9):
+#     plt.plot(uber_df['date'][i:i+9], uber_df['price'][i:i+9])
+#     print(uber_df[['date', 'price']][i:i+9])
+#     # i += 9
+# plt.show()
 
-top_ax.plot(uber_df['price'], label='Stock Pirce')
+# y = np.zeros(len(uber_df['date']), dtype=int)
+# plt.plot(uber_df['date'], y)
+# plt.plot(uber_df['date'][0:36], uber_df['price'][0:36], label='Stock Pirce')
+# plt.show()
 
-mid1_ax.plot(df_index['snp_500'], label='S&P 500')
-mid2_ax.plot(df_index['dow_30'], label='Dow Jones')
-bottom_ax.plot(df_index['nasdaq'], label='NASDAQ')
-plt.show()
-# print(df_index.head())
+# print(len(uber_df['date']))
+# print(datetime.datetime.date(pd.to_datetime('2021-01-08 16:00:03')))
