@@ -3,6 +3,7 @@ import datetime
 import helper_functions as hf
 import re
 import time
+from random import randint
 
 start = time.time()
 
@@ -23,6 +24,7 @@ class IndexSpider(scrapy.Spider):
                   'https://finance.yahoo.com/quote/TSLA?p=TSLA'
                   ]
 
+
     def parse(self, response):
 
         """This method is called to handle the response downloaded for each request made.
@@ -32,6 +34,7 @@ class IndexSpider(scrapy.Spider):
 
         # These objects index & name hold the css content for the scrape
         index = response.css('div.D\(ib\) span.Trsdu\(0\.3s\)::text').getall()
+        time.sleep(randint(1,5))
         name = response.css('div.D\(ib\) h1.D\(ib\)::text').getall()
 
         # This object holds the regex pattern to perform ETL on scraped data

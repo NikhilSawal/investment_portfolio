@@ -11,7 +11,7 @@ class IndexSpider(scrapy.Spider):
     # name of the spider, which will be referred in cronjob
     name = "index"
     start_urls = [
-        "https://finance.yahoo.com"
+        "https://finance.yahoo.com/quote/KSU?p=KSU&.tsrc=fin-srch"
     ]
 
     def parse(self, response):
