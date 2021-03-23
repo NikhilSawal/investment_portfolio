@@ -4,6 +4,10 @@
 1. [Overview](#overview)
 2. [Problem Statement](#problem_statement)
 3. [Motivation](#motivation)
+4. [Current project stage](#current_project_stage)
+5. [Exploratory Data Analysis (EDA)](#eda)
+6. [Machine Learning](#ml)
+7. [To-Do](#todo)
 
 ## **1. Overview** <a name="overview"></a>
 
@@ -28,7 +32,7 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 
 - Can we start storing information like news data and model the impact of a few key words to different industries, so that if a similar situation were to happen in the future, we can have a backup?
 
-## **4. Current Stage of Project**
+## **4. Current project stage** <a name="current_project_stage"></a>
 
 - Three python scripts are currently operational that scrape different sets of data from **yahoo finance**.
 - A  **cronjobs** is set to schedule these scrape & load the transformed data into Postgres.
@@ -94,7 +98,7 @@ A ```helper_functions.py``` script sends job completion notifications to a slack
 |:--:|
 | *Figure 5: Slack Error Notification* |
 
-## **5. Exploratory Data Analysis (EDA)**
+## **5. Exploratory Data Analysis (EDA)** <a name="eda"></a>
 
 Moving averages are a commonly used techniques to smooth a noisy time-series data. With the investment use case, it can be used both as a signaling technique and for forecasting. In this section I will be focusing more on the how we can use moving averages to signal buy/sell decisions for a stock. The 3 techniques we will be discussing are:  
 1. Simple Moving Average
@@ -131,11 +135,11 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 |:--:|
 | *Figure 7: MACD* |
 
-## **6. Machine Learning**
+## **6. Machine Learning** <a name="ml"></a>
 ### 6.1 Forecasting
 #### 6.1.1 Long Short Term Memory (LSTM)
 
-## **7. To-Do**
+## **7. To-Do** <a name="todo"></a>
 
 ### Web Scraping
 1. Increase frequency of scrapes from current per-hour.
