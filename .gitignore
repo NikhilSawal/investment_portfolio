@@ -2,3 +2,4 @@
 .DS_Store
 .env
 .track_proj
+.ipynb_checkpoints/
