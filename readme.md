@@ -91,15 +91,11 @@ All the operations until the load stage are neatly packaged into a virtual envir
 ### **4.5 Slack:**  
 A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications.
 
-| ![](misc_files/slack.png) |
-|:--:|
-| *Figure 4: Slack Notifications* |
-
-```Figure 5.``` shows the sample error message when the spider scrapes data formats that is not compatible for loading into the database. **The error also highlights the filename and line number of the respective datafile on which the error occurred for easy tracking.**
+```Figure 4.``` shows the sample error message when the spider scrapes data formats that is not compatible for loading into the database. **The error also highlights the filename and line number of the respective datafile on which the error occurred for easy tracking.**
 
 | ![](misc_files/slack_error_msg.png) |
 |:--:|
-| *Figure 5: Slack Error Notification* |
+| *Figure 4: Slack Error Notification* |
 
 ## **5. Exploratory Data Analysis (EDA)** - <a name="eda"></a> [Top](#top)
 
@@ -109,9 +105,9 @@ Moving averages are a commonly used techniques to smooth a noisy time-series dat
 3. Weighted Moving Average
 4. Moving Average Convergence Divergence (MACD)
 
-#### Moving Averages
+#### 5.1 Moving Averages
 
-Figure. 6 compares how each of the above techniques respond to price change in Uber stock price. Each of the moving averages is calculated using a 9 and 12 period timeframe, which means that each instance of the moving averages is computed as a function of the previous 9 or 12 stock prices. The reason why we use two different timeframes (9 and 12) to compute moving averages is because the cross-overs between the two is considered as a signal to buy/sell stocks.
+Figure. 5 compares how each of the above techniques respond to price change in Uber stock price. Each of the moving averages is calculated using a 9 and 12 period timeframe, which means that each instance of the moving averages is computed as a function of the previous 9 or 12 stock prices. The reason why we use two different timeframes (9 and 12) to compute moving averages is because the cross-overs between the two is considered as a signal to buy/sell stocks.
 
 Right of the bat we can see that the simple moving average is a more smooth curve as compared to the other two but is less responsive to price changes. This behavior stems from the fact that the simple moving average treats all previous stock prices equally where as the other two compensate by putting weights on them.
 
@@ -124,9 +120,9 @@ The relative positions of the red dashed line in Fig. 5 shows how the weighted a
 
 | <img src="eda_plots/moving_avg.png" alt="drawing" width="1000"/> |
 |:--:|
-| *Figure 6: Moving Averages* |
+| *Figure 5: Moving Averages* |
 
-#### MACD
+#### 5.2 MACD
 
 MACD or Moving average convergence divergence is another indicator commonly used in investment world to signal buy/sell decisions. It consists of two lines, the MACD line and Signal line
 > MACD = 12 period EMA - 26 period EMA (These EMA's are calculated over stock prices)  
@@ -136,11 +132,27 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 
 | <img src="eda_plots/macd.png" alt="drawing" width="1000"/> |
 |:--:|
-| *Figure 7: MACD* |
+| *Figure 6: MACD* |
+
+#### 5.3 Dash Application
+
+Following figure show first look of the investment app. The app for now provides the ability to compute simple/exponential/weighted moving averages computed over different timestamps. Currently the application is being developed and run locally but soon will be hosted on Heroku and available for public use.
+
+| <img src="misc_files/app.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 7: Investment App (First Look)* |
 
 ## **6. Machine Learning** <a name="ml"></a> - <a name="eda"></a> [Top](#top)
 ### 6.1 Forecasting
 #### 6.1.1 Long Short Term Memory (LSTM)
+
+| ![Univariate LSTM - 1](ml_plots/twilio_lstm_1_ts.png) |
+|:--:|
+| *Figure 8: Twilio stock price predictions (1 timestamp)* |
+
+| ![Univariate LSTM - 10](ml_plots/google_lstm_10_ts.png) |
+|:--:|
+| *Figure 9: Google stock price predictions (10 timestamp)* |
 
 ## **7. To-Do** <a name="todo"></a> - [Top](#top)
 
