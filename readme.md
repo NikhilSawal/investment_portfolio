@@ -8,6 +8,7 @@
 5. [Exploratory Data Analysis (EDA)](#eda)
 6. [Machine Learning](#ml)
 7. [To-Do](#todo)
+8. [Resources](#resources)
 
 ## **1. Overview** <a name="overview"></a>
 
@@ -24,7 +25,7 @@ Coming up with innovative techniques to predict the market accurately, has becom
 - **Time series forecasting:** Can a rich storage of data help us predict important aspects of the stock market?
 - **Natural language processing:** Can we use news data to model the impact of certain keywords on the trends of stocks belonging to different sector/industries?
 
-## **3. Motivation** <a name="motivation"></a> [Top](#top)
+## **3. Motivation** <a name="motivation"></a> - [Top](#top)
 
 The idea for this project, struck me when we were hit by the pandemic in early 2020. I used to work for a gift cards selling company i.e [Raise Marketplace.](https://www.raise.com/) that acquired gift cards from over 3000 brands and sold them on its marketplace. The business was heavily impacted because of the pandemic, since a huge chunk of the companies revenue came from the travels & hotels industry.
 
@@ -32,12 +33,14 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 
 - Can we start storing information like news data and model the impact of a few key words to different industries, so that if a similar situation were to happen in the future, we can have a backup?
 
-## **4. Current project stage** <a name="current_project_stage"></a>
+## **4. Current project stage** <a name="current_project_stage"></a> - [Top](#top)
 
 - Three python scripts are currently operational that scrape different sets of data from **yahoo finance**.
 - A  **cronjobs** is set to schedule these scrape & load the transformed data into Postgres.
 - The data from the scrape is first stored to 3 **.jl via: stock_prices.jl, index.jl, company_profile.jl** files which are subsequently piped to a Postgres Database.
 - A Slackbot then sends job notifications to my slack channel for handling errors.
+- An interactive dashboard using Dash (python framework) runs locally. Shows moving averages computed over n-timestamps.
+- Baseline univariate LSTM model that predicts stock prices for the next n-timestamps.
 
 > Current technologies: Python, Scrapy, Slack (for notifications), Cronjob, PostgreSQL, GIT  
 > Future technologies: Docker, Jenkins, Plotly/Flask, (Tensorflow/Keras/PyTorch)
@@ -98,7 +101,7 @@ A ```helper_functions.py``` script sends job completion notifications to a slack
 |:--:|
 | *Figure 5: Slack Error Notification* |
 
-## **5. Exploratory Data Analysis (EDA)** <a name="eda"></a>
+## **5. Exploratory Data Analysis (EDA)** - <a name="eda"></a> [Top](#top)
 
 Moving averages are a commonly used techniques to smooth a noisy time-series data. With the investment use case, it can be used both as a signaling technique and for forecasting. In this section I will be focusing more on the how we can use moving averages to signal buy/sell decisions for a stock. The 3 techniques we will be discussing are:  
 1. Simple Moving Average
@@ -135,11 +138,11 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 |:--:|
 | *Figure 7: MACD* |
 
-## **6. Machine Learning** <a name="ml"></a>
+## **6. Machine Learning** <a name="ml"></a> - <a name="eda"></a> [Top](#top)
 ### 6.1 Forecasting
 #### 6.1.1 Long Short Term Memory (LSTM)
 
-## **7. To-Do** <a name="todo"></a>
+## **7. To-Do** <a name="todo"></a> - [Top](#top)
 
 ### Web Scraping
 1. Increase frequency of scrapes from current per-hour.
@@ -162,6 +165,7 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
     - LSTM (Univariate and Multivariate)
     - ARIMA
     - Fast Forier Transform
+    - Model performance monitoring and optimization
 
 
 2. Clustering:  
@@ -173,7 +177,7 @@ Identify relationship between different sector/industry of the company. Strategy
 2. Plan for the structure of the app
 
 
-## **7. Resources**
+## **8. Resources** <a name="resources"></a> - [Top](#top)
 - Web Scraping: [https://docs.scrapy.org/en/latest/intro/overview.html](https://docs.scrapy.org/en/latest/intro/overview.html)  
 - Virtual Environment: [Corey Schafer: https://www.youtube.com/watch?v=Kg1Yvry_Ydk](https://www.youtube.com/watch?v=Kg1Yvry_Ydk)  
 - Cronjob: [Corey Schafer: https://www.youtube.com/watch?v=QZJ1drMQz1A&t=418s](https://www.youtube.com/watch?v=QZJ1drMQz1A&t=418s) ,  
