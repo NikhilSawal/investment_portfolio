@@ -161,6 +161,10 @@ Following figure show first look of the investment app. The app for now provides
 2. Write script for rotating proxies, to avoid getting IP blocked.
 3. Write script to scrape min, max stock price, volume.
 4. Add random pause to the script.
+```python
+import ast
+print("\u2705")
+```
 5. Write a prediction model to predict missing values.
 
 ### Data Storage
