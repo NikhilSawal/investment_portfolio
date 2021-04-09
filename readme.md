@@ -15,7 +15,9 @@
     5.2 [MACD](#macd)  
     5.3 [Dash Application](#dash_app)  
     5.4 [Word Cloud](#word_cloud)  
-6. [Machine Learning](#ml)
+6. [Machine Learning](#ml)   
+    6.1 [Forecasting](#forecast)  
+    6.1.1 [Long Short Term Memory (LSTM)](#lstm)
 7. [To-Do](#todo)
 8. [Resources](#resources)
 
@@ -170,8 +172,8 @@ Figure 9. shows keywords associated with +ve delta.
 | *Figure 9: News <-> (+ve) Delta Stock Price Mapping* |
 
 ## **6. Machine Learning** <a name="ml"></a> - <a name="eda"></a> [Top](#top)
-### 6.1 Forecasting
-#### 6.1.1 Long Short Term Memory (LSTM)
+### 6.1 Forecasting <a name="forecasting"></a> - <a name="eda"></a> [Top](#top)
+#### 6.1.1 Long Short Term Memory (LSTM) <a name="lstm"></a> - <a name="eda"></a> [Top](#top)
 
 | ![Univariate LSTM - 1](ml_plots/twilio_lstm_1_ts.png) |
 |:--:|
