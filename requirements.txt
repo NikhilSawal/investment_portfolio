@@ -92,6 +92,7 @@ typing-extensions==3.7.4.3
 urllib3==1.25.11
 w3lib==1.22.0
 Werkzeug==1.0.1
+wordcloud==1.8.1
 wrapt==1.12.1
 yarl==1.6.2
 zope.interface==5.1.2
