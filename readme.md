@@ -4,8 +4,17 @@
 1. [Overview](#overview)
 2. [Problem Statement](#problem_statement)
 3. [Motivation](#motivation)
-4. [Current project stage](#current_project_stage)
-5. [Exploratory Data Analysis (EDA)](#eda)
+4. [Current project stage](#current_project_stage)  
+    4.1 [Extract/Web Scraping](#web_scraping)  
+    4.2 [Transform](#transform)  
+    4.3 [Load](#load)  
+    4.4 [Virtual Environment](#virtual_env)  
+    4.5 [Slack](#slack)  
+5. [Exploratory Data Analysis (EDA)](#eda)  
+    5.1 [Moving Averages](#moving_avg)  
+    5.2 [MACD](#macd)  
+    5.3 [Dash Application](#dash_app)  
+    5.4 [Word Cloud](#word_cloud)  
 6. [Machine Learning](#ml)
 7. [To-Do](#todo)
 8. [Resources](#resources)
@@ -47,7 +56,7 @@ The idea for this project, struck me when we were hit by the pandemic in early 2
 
 *Figure 1* shows detailed representation of the project architecture.    
 
-### **4.1 WEB SCRAPING:**  
+### **4.1 WEB SCRAPING** <a name="web_scraping"></a> - [Top](#top)
 The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !! scrape three sets of information related to stock prices and store them in separate files (json lines). All scrapes are currently scheduled using ```cron``` and the frequency is every hour on business days from 8:00 am - 4:00 pm (CST). Following snippet shows the sample json lines format that is used by the scraper to store stock prices.
 
 ```
@@ -65,14 +74,14 @@ The orange boxes are Scrapy spiders written in Python that go on Yahoo Finance !
 
 ```
 
-### **4.2 Transform:**  
+### **4.2 Transform** <a name="transform"></a> - [Top](#top)
 The raw format of data presented in the above section is then cleaned using regex expressions before it makes it way to the database. ```Figure 1``` highlights the architecture of the project. The 3 green boxes are 3 separate files that store the scraped data in json lines format.
 
 | ![Project Architecture](misc_files/project_arch_march3.png) |
 |:--:|
 | *Figure 1: Project Architecture* |
 
-### **4.3 Load:**  
+### **4.3 Load** <a name="load"></a> - [Top](#top)
 A postgres database is created using the python package ```psycopg2``` that provides a pythonic interface to perform SQL like operations eg: ```CREATING database/tables, ALTERING information, INSERT/UPSERT operations```. The credentials needed to establish connections are stored as environment variables in ```~/.bash_profile``` script. All information related to data collected is shown in ```Figure 2```
 
 | <img src="misc_files/investment_db.png" alt="drawing" width="1000"/> |
@@ -85,10 +94,10 @@ A postgres database is created using the python package ```psycopg2``` that prov
 |:--:|
 | *Figure 3: Stock price data in PostgreSQL* |
 
-### **4.4 Virtual Environment:**  
+### **4.4 Virtual Environment** <a name="virtual_env"></a> - [Top](#top)
 All the operations until the load stage are neatly packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
 
-### **4.5 Slack:**  
+### **4.5 Slack** <a name="slack"></a> - [Top](#top)
 A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications.
 
 ```Figure 4.``` shows the sample error message when the spider scrapes data formats that is not compatible for loading into the database. **The error also highlights the filename and line number of the respective datafile on which the error occurred for easy tracking.**
@@ -105,7 +114,7 @@ Moving averages are a commonly used techniques to smooth a noisy time-series dat
 3. Weighted Moving Average
 4. Moving Average Convergence Divergence (MACD)
 
-#### 5.1 Moving Averages
+### 5.1 Moving Averages - <a name="moving_avg"></a> [Top](#top)
 
 Figure. 5 compares how each of the above techniques respond to price change in Uber stock price. Each of the moving averages is calculated using a 9 and 12 period timeframe, which means that each instance of the moving averages is computed as a function of the previous 9 or 12 stock prices. The reason why we use two different timeframes (9 and 12) to compute moving averages is because the cross-overs between the two is considered as a signal to buy/sell stocks.
 
@@ -122,7 +131,7 @@ The relative positions of the red dashed line in Fig. 5 shows how the weighted a
 |:--:|
 | *Figure 5: Moving Averages* |
 
-#### 5.2 MACD
+### 5.2 MACD - <a name="macd"></a> [Top](#top)
 
 MACD or Moving average convergence divergence is another indicator commonly used in investment world to signal buy/sell decisions. It consists of two lines, the MACD line and Signal line
 > MACD = 12 period EMA - 26 period EMA (These EMA's are calculated over stock prices)  
@@ -134,7 +143,7 @@ Sell when the MACD line crosses Signal line in downward direction and Buy when M
 |:--:|
 | *Figure 6: MACD* |
 
-#### 5.3 Dash Application
+### 5.3 Dash Application - <a name="dash_app"></a> [Top](#top)
 
 Following figure show first look of the investment app. The app for now provides the ability to compute simple/exponential/weighted moving averages computed over different timestamps. Currently the application is being developed and run locally but soon will be hosted on Heroku and available for public use.
 
@@ -142,17 +151,35 @@ Following figure show first look of the investment app. The app for now provides
 |:--:|
 | *Figure 7: Investment App (First Look)* |
 
+### 5.4 Word Cloud - News Data - <a name="word_cloud"></a> [Top](#top)
+
+Movements of the stock prices are often impacted by News headlines (or Word of mouth). When the news of the pandemic started hitting different media channels, how long did it take before the stock market felt its impact? What was the impact on different industries? Can we generate a rich repository of news headlines and model its impact on the stock market in terms of risk and hedging strategies? Can we identify a few key words that trigger these movements?
+
+Through this exploratory data analytics, I want to visualize keywords associated with ```-ve & +ve``` delta stock price.
+
+Figure 8. shows keywords associated with -ve delta.
+
+| <img src="eda_plots/downs.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 8: News <-> (-ve) Delta Stock Price Mapping* |
+
+Figure 9. shows keywords associated with +ve delta.
+
+| <img src="eda_plots/ups.png" alt="drawing" width="1000"/> |
+|:--:|
+| *Figure 9: News <-> (+ve) Delta Stock Price Mapping* |
+
 ## **6. Machine Learning** <a name="ml"></a> - <a name="eda"></a> [Top](#top)
 ### 6.1 Forecasting
 #### 6.1.1 Long Short Term Memory (LSTM)
 
 | ![Univariate LSTM - 1](ml_plots/twilio_lstm_1_ts.png) |
 |:--:|
-| *Figure 8: Twilio stock price predictions (1 timestamp)* |
+| *Figure 10: Twilio stock price predictions (1 timestamp)* |
 
 | ![Univariate LSTM - 10](ml_plots/google_lstm_10_ts.png) |
 |:--:|
-| *Figure 9: Google stock price predictions (10 timestamp)* |
+| *Figure 11: Google stock price predictions (10 timestamp)* |
 
 ## **7. To-Do** <a name="todo"></a> - [Top](#top)
 
