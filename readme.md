@@ -9,7 +9,7 @@
     4.2 [Transform](#transform)  
     4.3 [Load](#load)  
     4.4 [Virtual Environment](#virtual_env)  
-    4.5 [Slack](#slack)  
+    4.5 [Slack - Error handling](#slack)  
 5. [Exploratory Data Analysis (EDA)](#eda)  
     5.1 [Moving Averages](#moving_avg)  
     5.2 [MACD](#macd)  
@@ -97,7 +97,7 @@ A postgres database is created using the python package ```psycopg2``` that prov
 ### **4.4 Virtual Environment** <a name="virtual_env"></a> - [Top](#top)
 All the operations until the load stage are neatly packaged into a virtual environment that uses ```Python --version 3.8.7```. The green dashed line in ```Figure 1``` represents the virtual environment. A ```requirements.txt``` is also generated that store the versions of dependancies used for the application.
 
-### **4.5 Slack** <a name="slack"></a> - [Top](#top)
+### **4.5 Slack - Error handling** <a name="slack"></a> - [Top](#top)
 A ```helper_functions.py``` script sends job completion notifications to a slack channel of the following format. *More improvements to come in future.* ```Figure 4```shows sample slack notifications.
 
 ```Figure 4.``` shows the sample error message when the spider scrapes data formats that is not compatible for loading into the database. **The error also highlights the filename and line number of the respective datafile on which the error occurred for easy tracking.**
