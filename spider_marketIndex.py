@@ -3,6 +3,7 @@ import datetime
 import helper_functions as hf
 import re
 import time
+from random import randint
 
 start = time.time()
 
@@ -11,7 +12,7 @@ class IndexSpider(scrapy.Spider):
     # name of the spider, which will be referred in cronjob
     name = "index"
     start_urls = [
-        "https://finance.yahoo.com/quote/KSU?p=KSU&.tsrc=fin-srch"
+        "https://finance.yahoo.com/quote/DOCU?p=DOCU"
     ]
 
     def parse(self, response):
@@ -21,6 +22,7 @@ class IndexSpider(scrapy.Spider):
         we will be extracting helpful information like s&p, dow 30 and nasdaq index."""
 
         # The object index holds the css content for the scrape
+        time.sleep(randint(1,5))
         index = response.css("span.Trsdu\(0\.3s\)::text").getall()
 
         # following objects are regex pattern that extract numeric content from different

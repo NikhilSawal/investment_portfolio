@@ -1,7 +1,5 @@
 import os
 import re
-import json
-import json_lines
 import pandas as pd
 import numpy as np
 import pandas.io.sql as psql
