@@ -55,9 +55,11 @@ def pipe_data(file_name):
                 cur.execute(sql, values)
                 conn.commit()
                 unicode = "\u2705"
+                status = "Success"
             except (ValueError, psycopg2.DatabaseError) as e:
                 hf.slack_msg("```{} at line number {} in file {}```".format(e, i, "\u274C"+file_name))
                 unicode = "\u274C"
+                status = "Fail"
                 break
 
     duration = datetime.now()-start
@@ -70,11 +72,11 @@ def pipe_data(file_name):
     status: {},
     runtime: {}
     ```
-    """.format("pg_data_insert", unicode+file_name, "Success", duration))
+    """.format("pg_data_insert", unicode+file_name, status, duration))
 
 def main():
 
-    pipe_data("company_profile.jl")
+    # pipe_data("company_profile.jl")
     pipe_data("index.jl")
     pipe_data("stock_prices.jl")
 
