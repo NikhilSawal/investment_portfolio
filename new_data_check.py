@@ -26,19 +26,22 @@ def data_check(file_name):
 
             unicode = "\u2705"
             status = "Success"
+            description = 'Data added to {}'.format(file_name)
 
         else:
 
             unicode = "\u274C"
             status = "Fail"
+            description = 'Data NOT added to {}'.format(file_name)
 
     # Send Slack notifications
     hf.slack_msg("""
     ```
     datafile: {},
-    status: {}
+    status: {},
+    description: {}
     ```
-    """.format(unicode+file_name, status))
+    """.format(unicode+file_name, status, description))
 
 def main():
 

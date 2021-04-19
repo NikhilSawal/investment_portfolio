@@ -56,10 +56,12 @@ def pipe_data(file_name):
                 conn.commit()
                 unicode = "\u2705"
                 status = "Success"
+                description = "Data piped to Postgres"
             except (ValueError, psycopg2.DatabaseError) as e:
                 hf.slack_msg("```{} at line number {} in file {}```".format(e, i, "\u274C"+file_name))
                 unicode = "\u274C"
                 status = "Fail"
+                description = "Data not piped to Postgres"
                 break
 
     duration = datetime.now()-start
@@ -70,9 +72,10 @@ def pipe_data(file_name):
     script: {}.py,
     datafile: {},
     status: {},
+    description: {},
     runtime: {}
     ```
-    """.format("pg_data_insert", unicode+file_name, status, duration))
+    """.format("pg_data_insert", unicode+file_name, status, description, duration))
 
 def main():
 
