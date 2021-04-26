@@ -5,6 +5,12 @@ import os
 ####################################
 # Get global keys
 pg_auth = os.environ.get("PG_AUTH")
+
+# Heroku global variables
+host = os.environ.get("HEROKU_HOST")
+dbname = os.environ.get("DB_NAME")
+user = os.environ.get("USER")
+password = os.environ.get("PASSWORD")
 ####################################
 
 ###################
@@ -12,15 +18,18 @@ pg_auth = os.environ.get("PG_AUTH")
 ###################
 
 ### Connect to PostgreSQL DBMS
-con = psycopg2.connect(host="localhost", user="postgres", password=pg_auth)
-con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+# con = psycopg2.connect(host="localhost", user="postgres", password=pg_auth)
+# con = psycopg2.connect(host=host,
+#                        user=user,
+#                        password=password)
+# con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 
 ### Obtain a DB Cursor
-cursor = con.cursor()
+# cursor = con.cursor()
 
 ### Create DB
-sqlCreateDatabase = "CREATE DATABASE investment_db;"
-cursor.execute(sqlCreateDatabase)
+# sqlCreateDatabase = "CREATE DATABASE investment_db;"
+# cursor.execute(sqlCreateDatabase)
 
 
 ################
@@ -28,10 +37,10 @@ cursor.execute(sqlCreateDatabase)
 ################
 
 ### Connect to PostgreSQL database
-postgresConnection = psycopg2.connect(host="localhost",
-                                      dbname="investment_db",
-                                      user="postgres",
-                                      password=pg_auth)
+postgresConnection = psycopg2.connect(host=host,
+                                      dbname=dbname,
+                                      user=user,
+                                      password=password)
 
 cur = postgresConnection.cursor()
 
