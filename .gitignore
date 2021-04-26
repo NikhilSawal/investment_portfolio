@@ -1,5 +1,7 @@
-*.pyc
+.pyc
 .DS_Store
 .env
 .track_proj
 .ipynb_checkpoints/
+__pycache__/
+.swp
