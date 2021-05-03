@@ -175,6 +175,9 @@ Figure 9. shows keywords associated with +ve delta.
 ### 6.1 Forecasting <a name="forecasting"></a> - <a name="eda"></a> [Top](#top)
 #### 6.1.1 Long Short Term Memory (LSTM) <a name="lstm"></a> - <a name="eda"></a> [Top](#top)
 
+[Code Link - Univariate LSTM](https://github.com/NikhilSawal/investment_portfolio_model/tree/master/lstm_univariate)  
+[Code Link - Multivariate LSTM](https://github.com/NikhilSawal/investment_portfolio_model/tree/master/lstm_multivariate)
+
 | ![Univariate LSTM - 1](ml_plots/twilio_lstm_1_ts.png) |
 |:--:|
 | *Figure 10: Twilio stock price predictions (1 timestamp)* |
